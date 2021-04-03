@@ -9,13 +9,13 @@ An API wrapper of online compiler jdoodle.com written in python.
 
 
 ## How to install?
-Use the following command on you devicce to install it.
+Use the following command on you device to install it.
 ```
 pip install pydoodle
 ```
 
 ### Documentation
- - Documentaion is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions will be appreciated)
+ - Documentaion is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions are appreciated)
 
 ### Example
  - A basic [example](examples/example.py) on how to use this package.
