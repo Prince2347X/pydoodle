@@ -4,7 +4,7 @@ An API wrapper of online compiler jdoodle.com written in python.
 
 ## Features
  - Easy to use.
- - Over 30+ languages to compile.
+ - Over 50+ languages to compile.
  - Get the credits spent information.
 
 

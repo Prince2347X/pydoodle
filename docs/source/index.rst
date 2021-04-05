@@ -10,6 +10,34 @@ Welcome to pydoodle's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+Look how easy it is to use:
+---------------------------
+
+.. code-block:: python
+
+    import pydoodle
+    c = pydoodle.Compiler(clientId="client-id", clientSecret="client-secret")
+    output = c.execute(script="print('Hello World')", language="python3")
+    usage = c.usage()
+    print(usage, output, sep='\n')
+
+Features
+--------
+
+- Easy to use.
+- Over 50+ languages to compile.
+- Get the credits spent information.
+
+
+Installation
+------------
+
+Install pydoodle by running:
+
+.. code-block::
+
+    pip install pydoodle
+
 
 
 Indices and tables
