@@ -17,9 +17,9 @@ Look how easy it is to use:
 
     import pydoodle
     c = pydoodle.Compiler(clientId="client-id", clientSecret="client-secret")
-    output = c.execute(script="print('Hello World')", language="python3")
+    result = c.execute(script="print('Hello World')", language="python3")
     usage = c.usage()
-    print(usage, output, sep='\n')
+    print(usage, result.output, sep='\n')
 
 Features
 --------

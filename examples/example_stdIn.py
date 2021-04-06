@@ -1,9 +1,9 @@
-from pydoodle.jdoodle import Compiler
+import pydoodle
 
-c = Compiler(clientId="client-id",
+c = pydoodle.Compiler(clientId="client-id",
              clientSecret="client-secret")
 with open(file="test2.py") as f:
     script = f.read()
     f.close()
-output = c.execute(script=script, language="python3", stdIn="Hello World!")
-print(output)
+result = c.execute(script=script, language="python3", stdIn="Hello World!")
+print(result.output)

@@ -9,20 +9,30 @@ An API wrapper of online compiler jdoodle.com written in python.
 
 
 ## How to install?
-Use the following command on you device to install it.
+Install pydoodle by running 
 ```
 pip install pydoodle
 ```
 
 ### Documentation
- - Documentaion is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions are appreciated)
+ - Documentation is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions are appreciated)
 
 ### Example
- - A basic [example](examples/example.py) on how to use this package.
+ - Look how easy it is to use:
+ 
+    ```python
+    import pydoodle
+    c = pydoodle.Compiler(clientId="client-id", clientSecret="client-secret")
+    result = c.execute(script="print('Hello World')", language="python3")
+    usage = c.usage()
+    print(usage, result.output, sep='\n')
+    ```
+ - [example.py](examples/example.py) -> Basic example on how to use!
+ - [example_stdIn.py](examples/example_stdIn.py) -> Example on how to use stdIn.
 
 
 ### Misc 
- - Star this repo if you're using this wrapper 😄
+ - Star [this repo](https://github.com/Prince2347X/pydoodle/) if you're using this wrapper 😄
  - Head over to [jdoodle](https://jdoodle.com/compiler-api) to get clientId and clientSecret.
  - Read the FAQs of the API [here.](https://docs.jdoodle.com/compiler-api/compiler-api)
 

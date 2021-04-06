@@ -2,6 +2,14 @@ import requests
 from .errors import *
 
 
+class Output:
+    def __init__(self, output, statusCode, memory, cpuTime):
+        self.output = output
+        self.statusCode = statusCode
+        self.memory = memory
+        self.cpuTime = cpuTime
+
+
 class Compiler:
     def __init__(self, clientId: str, clientSecret: str):
         """
@@ -29,7 +37,7 @@ class Compiler:
                           'whitespace', 'yabasic']
         self.json = {}
 
-    def execute(self, script: str, language: str, stdIn: str = None, versionIndex: int = None) -> dict:
+    def execute(self, script: str, language: str, stdIn: str = None, versionIndex: int = None) -> Output:
         """
         Executes the script and return output in dict datatype.
         :param script: The script to be executed.
@@ -40,8 +48,8 @@ class Compiler:
         :type stdIn: str
         :param versionIndex: Version Index of language, defaults to 0.
         :type versionIndex: int
-        :returns: Returns a dict, having following keys(if execution is successful): "output", "statusCode", "memory", "cpuTime"
-        :rtype: dict
+        :returns: Returns an Output object.
+        :rtype: Output
         """
         if not isinstance(script, str):
             raise TypeError
@@ -67,8 +75,12 @@ class Compiler:
             else:
                 self.json["stdin"] = stdIn
         response = requests.post(url=self.base_url, headers=self.headers, json=self.json)
+        response_json = response.json()
         if response.status_code == 200:
-            return response.json()
+            return Output(output=response_json['output'],
+                          statusCode=response_json['statusCode'],
+                          memory=response_json['memory'],
+                          cpuTime=response_json['cpuTime'])
         else:
             error = response.json()
             if response.status_code == 401:

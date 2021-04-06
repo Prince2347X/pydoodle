@@ -5,6 +5,6 @@ c = pydoodle.Compiler(clientId="client-id",
 with open(file="test1.py") as f:
     script = f.read()
     f.close()
-output = c.execute(script=script, language="python3")
+result = c.execute(script=script, language="python3")
 usage = c.usage()
-print(usage, output, sep='\n')
+print(usage, result.output, sep='\n')
