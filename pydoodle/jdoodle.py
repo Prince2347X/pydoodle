@@ -54,17 +54,18 @@ class Compiler:
                 raise TypeError
         else:
             versionIndex = 0
-        if stdIn is not None:
-            if not isinstance(stdIn, str):
-                raise TypeError
-            else:
-                self.json["stdin"] = stdIn
+
         self.json = {"clientId": self.clientID,
                      "clientSecret": self.clientSecret,
                      "script": f"""{script}""",
                      "language": f"{language}",
                      "versionIndex": str(versionIndex)
                      }
+        if stdIn is not None:
+            if not isinstance(stdIn, str):
+                raise TypeError
+            else:
+                self.json["stdin"] = stdIn
         response = requests.post(url=self.base_url, headers=self.headers, json=self.json)
         if response.status_code == 200:
             return response.json()
