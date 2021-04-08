@@ -1,3 +1,4 @@
+import re
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
@@ -13,6 +14,8 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
+with open("../pydoodle/__init__.py") as f:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 
 # -- Project information -----------------------------------------------------
@@ -22,7 +25,7 @@ copyright = '2021, Prince2347X'
 author = 'Prince2347X'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = version
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,6 +34,7 @@ release = '1.0.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.autodoc"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
