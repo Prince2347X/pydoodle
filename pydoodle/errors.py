@@ -1,4 +1,5 @@
 class LanguageNotSupported(Exception):
+    """Raised if wrong language code is provided."""
     pass
 
 

@@ -6,9 +6,25 @@
 Welcome to pydoodle's documentation!
 ====================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+- pydoodle is an API wrapper of online compiler jdoodle.com written in python.
+- Requires python 3.5 or above.
+
+Features
+--------
+
+- Easy to use.
+- Over 50+ languages to compile.
+- Get the credits spent information.
+
+Installation
+------------
+
+Install pydoodle by running:
+
+.. code-block::
+
+    pip install pydoodle
+
 
 Look how easy it is to use:
 ---------------------------
@@ -21,28 +37,14 @@ Look how easy it is to use:
     usage = c.usage()
     print(usage, result.output, sep='\n')
 
-Features
---------
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-- Easy to use.
-- Over 50+ languages to compile.
-- Get the credits spent information.
-
-
-Installation
-------------
-
-Install pydoodle by running:
-
-.. code-block::
-
-    pip install pydoodle
-
-
+   api
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

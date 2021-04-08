@@ -1,5 +1,5 @@
 import requests
-from .errors import *
+from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported
 
 
 class Output:
@@ -11,13 +11,17 @@ class Output:
 
 
 class Compiler:
+    """
+    Initialize the compiler which let you access the Jdoodle API.
+
+    Parameters
+    ------------
+    clientId: str
+        The clientId to access the API which you can get from https://jdoodle.com/compiler-api
+    clientSecret: str
+        The clientSecret which you can get from https://jdoodle.com/compiler-api
+    """
     def __init__(self, clientId: str, clientSecret: str):
-        """
-        :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
-        :type clientId: str
-        :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
-        :type clientSecret: str
-        """
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
@@ -38,18 +42,35 @@ class Compiler:
         self.json = {}
 
     def execute(self, script: str, language: str, stdIn: str = None, versionIndex: int = None) -> Output:
+
         """
-        Executes the script and return output in dict datatype.
-        :param script: The script to be executed.
-        :type script: str
-        :param language: Language of the script.
-        :type language: str
-        :param stdIn: StdIn of script (If Any), defaults to None.
-        :type stdIn: str
-        :param versionIndex: Version Index of language, defaults to 0.
-        :type versionIndex: int
-        :returns: Returns an Output object.
-        :rtype: Output
+        Executes the provided script.
+
+        Parameters
+        -----------
+        script: str
+            The script to be executed.
+        language: str
+            Language of the script. See available languages here_.
+        stdIn: str, optional
+            stdIn of the script (If any), Defaults to ``None``. In case of multiple inputs, they should be separated by '\n'
+        versionIndex: int, optional
+            versionIndex of compiler representing the version. Defaults to ``0``. Check versionIndex representing the version here_.
+
+        Returns
+        -------
+        Output
+            An output object with all of it's attributes.
+
+        Raises
+        -------
+        UnauthorizedRequest
+            Raised if either your clientID or clientSecret is invalid.
+        LanguageNotSupported
+            Raised if wrong language code is provided.
+        BadRequest
+            Raised when invalid language or versionIndex is provided.
+
         """
         if not isinstance(script, str):
             raise TypeError
@@ -92,9 +113,7 @@ class Compiler:
 
     def usage(self) -> int:
         """
-        Returns number of credits spent today.
-        :returns: Numbers of credits spent today.
-        :rtype: int
+        Tells the number of credits spent today.
         """
         json = {"clientId": self.clientID, "clientSecret": self.clientSecret}
         response = requests.post(url=self.usage_url, json=json)
