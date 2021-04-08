@@ -39,7 +39,6 @@ Look how easy it is to use:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    api
 
