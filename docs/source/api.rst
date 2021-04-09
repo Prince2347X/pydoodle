@@ -9,7 +9,7 @@ Compiler
 Output
 --------
 
-.. autoclass:: pydoodle.jdoodle.Output
+.. autoclass:: pydoodle.Output
     :members:
 
 .. _here:
