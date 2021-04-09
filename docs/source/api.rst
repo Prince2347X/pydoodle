@@ -3,13 +3,13 @@ API Reference
 
 Compiler
 ---------
-.. autoclass:: pydoodle.Compiler
+.. autoclass:: pydoodle.pydoodle.Compiler
     :members:
 
 Output
 --------
 
-.. autoclass:: pydoodle.Output
+.. autoclass:: pydoodle.pydoodle.Output
     :members:
 
 .. _here:
