@@ -27,8 +27,8 @@ pip install pydoodle
     usage = c.usage()
     print(usage, result.output, sep='\n')
     ```
- - [example.py](examples/example.py) -> Basic example on how to use!
- - [example_stdIn.py](examples/example_stdIn.py) -> Example on how to use stdIn.
+ - [example.py](https://github.com/Prince2347X/pydoodle/blob/master/examples/example.py) -> Basic example on how to use!
+ - [example_stdIn.py](https://github.com/Prince2347X/pydoodle/blob/master/examples/example_stdIn.py) -> Example on how to use stdIn (inputs).
 
 
 ### Misc 
