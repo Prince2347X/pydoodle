@@ -3,6 +3,10 @@ from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported
 
 
 class Output:
+    """
+    The output of the executed script.
+    """
+
     def __init__(self, output, statusCode, memory, cpuTime):
         self.output = output
         self.statusCode = statusCode
@@ -14,14 +18,14 @@ class Compiler:
     """
     Initialize the compiler which let you access the Jdoodle API.
 
-    Parameters
-    ------------
-    clientId: str
-        The clientId to access the API which you can get from https://jdoodle.com/compiler-api
-    clientSecret: str
-        The clientSecret which you can get from https://jdoodle.com/compiler-api
+    :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
+    :type clientId: str
+    :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
+    :type clientSecret: str
     """
+
     def __init__(self, clientId: str, clientSecret: str):
+        """"""
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
@@ -46,30 +50,21 @@ class Compiler:
         """
         Executes the provided script.
 
-        Parameters
-        -----------
-        script: str
-            The script to be executed.
-        language: str
-            Language of the script. See available languages here_.
-        stdIn: str, optional
-            stdIn of the script (If any), Defaults to ``None``. In case of multiple inputs, they should be separated by '\n'
-        versionIndex: int, optional
-            versionIndex of compiler representing the version. Defaults to ``0``. Check versionIndex representing the version here_.
+        :parameter script: The script to be executed.
+        :type script: str
+        :parameter language: Language of the script.
+        :type language: str
+        :parameter stdIn: StdIn of script (If Any), defaults to `None`. In case of multiple inputs, they should be separated by `||` (double pipe).
+        :type stdIn: str, optional
+        :parameter versionIndex: Version Index of language, defaults to `0`.
+        :type versionIndex: int, optional
 
-        Returns
-        -------
-        Output
-            An output object with all of it's attributes.
+        :returns: Returns an Output object with all it's attributes.
+        :rtype: Output
 
-        Raises
-        -------
-        UnauthorizedRequest
-            Raised if either your clientID or clientSecret is invalid.
-        LanguageNotSupported
-            Raised if wrong language code is provided.
-        BadRequest
-            Raised when invalid language or versionIndex is provided.
+        :raises: :class:`UnauthorizedRequest`: Raised if either your clientID or clientSecret is invalid.
+        :raises: :class:`LanguageNotSupported`: Raised if wrong language code is provided.
+        :raises: :class:`BadRequest`: Raised when invalid language or versionIndex is provided.
 
         """
         if not isinstance(script, str):
@@ -94,7 +89,7 @@ class Compiler:
             if not isinstance(stdIn, str):
                 raise TypeError
             else:
-                self.json["stdin"] = stdIn
+                self.json["stdin"] = stdIn.replace("||", "\n")
         response = requests.post(url=self.base_url, headers=self.headers, json=self.json)
         response_json = response.json()
         if response.status_code == 200:
@@ -114,6 +109,9 @@ class Compiler:
     def usage(self) -> int:
         """
         Tells the number of credits spent today.
+
+        :returns: The number of credit spent(number of API calls) today.
+        :rtype: int
         """
         json = {"clientId": self.clientID, "clientSecret": self.clientSecret}
         response = requests.post(url=self.usage_url, json=json)

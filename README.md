@@ -15,7 +15,7 @@ pip install pydoodle
 ```
 
 ### Documentation
- - Documentation is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions are appreciated)
+ - Documentation is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io)
 
 ### Example
  - Look how easy it is to use:
