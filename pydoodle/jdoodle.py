@@ -44,16 +44,24 @@ class Compiler:
                           'smalltalk', 'spidermonkey', 'sql', 'swift', 'tcl', 'unlambda', 'vbn', 'verilog',
                           'whitespace', 'yabasic']
         self.json = {}
+    
+    
+    def _read_link(self, link: str) -> str:
+        raw_link = f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
+        r = requests.get(raw_link)
+        return r.text
 
-    def execute(self, script: str, language: str, stdIn: str = None, versionIndex: int = None) -> Output:
+    def execute(self, script: str, language: str, link: bool = False, stdIn: str = None, versionIndex: int = None) -> Output:
 
         """
         Executes the provided script.
 
-        :parameter script: The script to be executed.
+        :parameter script: The script to be executed. You can provide link of any code hosting site such as pastebin, hastebin, etc. (You've to set `link` parameter to `True`)
         :type script: str
         :parameter language: Language of the script.
         :type language: str
+        :parameter link: Tell if a link of any code hosting site(like pastebin, hastebin, etc..) is provided in script parameter. Defaults to `False`. If `True` it takes the script as link and fetch the script from the link.
+        :type link: bool
         :parameter stdIn: StdIn of script (If Any), defaults to `None`. In case of multiple inputs, they should be separated by `||` (double pipe).
         :type stdIn: str, optional
         :parameter versionIndex: Version Index of language, defaults to `0`.
@@ -78,6 +86,9 @@ class Compiler:
                 raise TypeError
         else:
             versionIndex = 0
+        link = True if script.startswith("https://") else link
+        if link is not False:
+            script = _read_link(script)
 
         self.json = {"clientId": self.clientID,
                      "clientSecret": self.clientSecret,
