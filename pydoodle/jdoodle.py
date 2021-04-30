@@ -25,7 +25,6 @@ class Compiler:
     """
 
     def __init__(self, clientId: str, clientSecret: str):
-        """"""
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
@@ -44,15 +43,15 @@ class Compiler:
                           'smalltalk', 'spidermonkey', 'sql', 'swift', 'tcl', 'unlambda', 'vbn', 'verilog',
                           'whitespace', 'yabasic']
         self.json = {}
-        
+
     def _get_raw_link(self, link: str) -> str:
         if "pastebin" in link or "hastebin" in link:
             return f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
         elif "textbin" in link:
             return f"{link[:link.find('.net')]}.net/raw{link[link.rfind('/'):]}"
-    
+
     def _read_link(self, link: str) -> str:
-        raw_link = _get_raw_link(link)
+        raw_link = self._get_raw_link(link)
         r = requests.get(raw_link)
         return r.text
 
@@ -93,7 +92,7 @@ class Compiler:
             versionIndex = 0
         link = True if script.startswith("https://") else link
         if link is not False:
-            script = _read_link(script)
+            script = self._read_link(script)
 
         self.json = {"clientId": self.clientID,
                      "clientSecret": self.clientSecret,
