@@ -1,11 +1,11 @@
 Errors
 =======
 
-.. autoclass:: pydoodle.LanguageNotSupported
+.. autoclass:: pydoodle.errors.LanguageNotSupported
     :members:
     
-.. autoclass:: pydoodle.UnauthorizedRequest
+.. autoclass:: pydoodle.errors.UnauthorizedRequest
     :members:
     
-.. autoclass:: pydoodle.BadRequest
+.. autoclass:: pydoodle.errors.BadRequest
     :members:
