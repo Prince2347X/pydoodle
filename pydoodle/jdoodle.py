@@ -44,10 +44,15 @@ class Compiler:
                           'smalltalk', 'spidermonkey', 'sql', 'swift', 'tcl', 'unlambda', 'vbn', 'verilog',
                           'whitespace', 'yabasic']
         self.json = {}
-    
+        
+    def _get_raw_link(self, link: str) -> str:
+        if "pastebin" in link or "hastebin" in link:
+            return f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
+        elif "textbin" in link:
+            return f"{link[:link.find('.net')]}.net/raw{link[link.rfind('/'):]}"
     
     def _read_link(self, link: str) -> str:
-        raw_link = f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
+        raw_link = _get_raw_link(link)
         r = requests.get(raw_link)
         return r.text
 
