@@ -11,3 +11,7 @@ class UnauthorizedRequest(Exception):
 class BadRequest(Exception):
     """Raised when invalid language or versionIndex is provided. """
     pass
+
+class LinkNotSupported(Exception):
+    """Raised if the provided link isn't supported yet by pydoodle."""
+    pass

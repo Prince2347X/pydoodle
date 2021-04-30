@@ -1,5 +1,5 @@
 import requests
-from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported
+from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported
 
 
 class Output:
@@ -49,6 +49,8 @@ class Compiler:
             return f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
         elif "textbin" in link:
             return f"{link[:link.find('.net')]}.net/raw{link[link.rfind('/'):]}"
+        else:
+            raise LinkNotSupported("Not able to fetch script.")
 
     def _read_link(self, link: str) -> str:
         raw_link = self._get_raw_link(link)
