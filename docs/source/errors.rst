@@ -9,3 +9,7 @@ Errors
     
 .. autoclass:: pydoodle.errors.BadRequest
     :members:
+
+.. autoclass:: pydoodle.errors.LinkNotSupported
+    :members:
+

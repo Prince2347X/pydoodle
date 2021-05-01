@@ -78,9 +78,10 @@ class Compiler:
         :returns: Returns an Output object with all it's attributes.
         :rtype: Output
 
-        :raises: :class:`UnauthorizedRequest`: Raised if either your clientID or clientSecret is invalid.
-        :raises: :class:`LanguageNotSupported`: Raised if wrong language code is provided.
-        :raises: :class:`BadRequest`: Raised when invalid language or versionIndex is provided.
+        :raises: :class:``UnauthorizedRequest``: Raised if either your clientID or clientSecret is invalid.
+        :raises: :class:``LanguageNotSupported``: Raised if wrong language code is provided.
+        :raises: :class:``BadRequest``: Raised when invalid language or versionIndex is provided.
+        :raises: :class:``LinkNotSupported``: Raised if the provided link isn't supported yet by pydoodle.
 
         """
         if not isinstance(script, str):
