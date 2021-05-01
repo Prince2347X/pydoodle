@@ -35,6 +35,7 @@ release = "1.0.2"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx_rtd_theme",
+    "sphinx_rtd_dark_mode"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -58,4 +59,6 @@ html_theme = "sphinx_rtd_theme"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-pygments_style = 'sphinx'
+pygments_style = 'friendly'
+default_dark_mode = True
+
