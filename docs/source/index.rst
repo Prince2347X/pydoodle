@@ -38,7 +38,7 @@ Look how easy it is to use:
     print(usage, result.output, sep='\n')
 
 .. toctree::
-   :caption: Pydoodle API
+   :caption: Pydoodle
    :numbered:
    :maxdepth: 2
 
