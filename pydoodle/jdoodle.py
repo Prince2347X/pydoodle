@@ -50,7 +50,7 @@ class Compiler:
         elif "textbin" in link:
             return f"{link[:link.find('.net')]}.net/raw{link[link.rfind('/'):]}"
         elif "pastie" in link:
-            return f"{link}/raw
+            return f"{link}/raw"
         else:
             raise LinkNotSupported("Not able to fetch script.")
 
