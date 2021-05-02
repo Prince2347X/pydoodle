@@ -17,6 +17,9 @@ import sphinx_rtd_dark_mode
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0,os.path.abspath('.'))
 
+version = "v1.1.0"
+
+
 
 # -- Project information -----------------------------------------------------
 
@@ -25,7 +28,7 @@ copyright = '2021, Prince2347X'
 author = 'Prince2347X'
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.2"
+release = version
 
 
 # -- General configuration ---------------------------------------------------

@@ -1,5 +1,5 @@
 import requests
-from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported
+from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported
 
 
 class Output:
@@ -25,7 +25,6 @@ class Compiler:
     """
 
     def __init__(self, clientId: str, clientSecret: str):
-        """"""
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
@@ -45,15 +44,32 @@ class Compiler:
                           'whitespace', 'yabasic']
         self.json = {}
 
-    def execute(self, script: str, language: str, stdIn: str = None, versionIndex: int = None) -> Output:
+    def _get_raw_link(self, link: str) -> str:
+        if "pastebin" in link or "hastebin" in link:
+            return f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
+        elif "textbin" in link:
+            return f"{link[:link.find('.net')]}.net/raw{link[link.rfind('/'):]}"
+        elif "pastie" in link:
+            return f"{link}/raw"
+        else:
+            raise LinkNotSupported("Not able to fetch script.")
+
+    def _read_link(self, link: str) -> str:
+        raw_link = self._get_raw_link(link)
+        r = requests.get(raw_link)
+        return r.text
+
+    def execute(self, script: str, language: str, link: bool = False, stdIn: str = None, versionIndex: int = None) -> Output:
 
         """
         Executes the provided script.
 
-        :parameter script: The script to be executed.
+        :parameter script: The script to be executed. You can provide link of any code hosting site such as pastebin, hastebin, etc. (You've to set `link` parameter to `True`)
         :type script: str
         :parameter language: Language of the script.
         :type language: str
+        :parameter link: Tell if a link of any code hosting site(like pastebin, hastebin, etc..) is provided in script parameter. Defaults to `False`. If `True` it takes the script as link and fetch the script from the link.
+        :type link: bool
         :parameter stdIn: StdIn of script (If Any), defaults to `None`. In case of multiple inputs, they should be separated by `||` (double pipe).
         :type stdIn: str, optional
         :parameter versionIndex: Version Index of language, defaults to `0`.
@@ -65,6 +81,7 @@ class Compiler:
         :raises: :class:`UnauthorizedRequest`: Raised if either your clientID or clientSecret is invalid.
         :raises: :class:`LanguageNotSupported`: Raised if wrong language code is provided.
         :raises: :class:`BadRequest`: Raised when invalid language or versionIndex is provided.
+        :raises: :class:`LinkNotSupported`: Raised if the provided link isn't supported yet by pydoodle.
 
         """
         if not isinstance(script, str):
@@ -78,6 +95,9 @@ class Compiler:
                 raise TypeError
         else:
             versionIndex = 0
+        link = True if script.startswith("https://") else link
+        if link is not False:
+            script = self._read_link(script)
 
         self.json = {"clientId": self.clientID,
                      "clientSecret": self.clientSecret,
