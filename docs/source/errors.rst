@@ -12,4 +12,3 @@ Errors
 
 .. autoclass:: pydoodle.errors.LinkNotSupported
     :members:
-
