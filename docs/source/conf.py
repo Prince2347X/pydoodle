@@ -14,6 +14,7 @@ import os
 import sys
 import sphinx_rtd_theme
 import sphinx_rtd_dark_mode
+from sphinx.locale import _
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0,os.path.abspath('.'))
 
