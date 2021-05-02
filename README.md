@@ -29,6 +29,7 @@ pip install pydoodle
     ```
  - [example.py](https://github.com/Prince2347X/pydoodle/blob/master/examples/example.py) -> Basic example on how to use!
  - [example_stdIn.py](https://github.com/Prince2347X/pydoodle/blob/master/examples/example_stdIn.py) -> Example on how to use stdIn (inputs).
+ - [example_links.py](https://github.com/Prince2347X/pydoodle/blob/master/examples/example_links.py) -> Example on how to use links as script.
 
 
 ### Misc 
