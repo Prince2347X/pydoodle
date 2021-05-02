@@ -65,3 +65,4 @@ html_static_path = ['_static']
 
 pygments_style = 'friendly'
 default_dark_mode = True
+
