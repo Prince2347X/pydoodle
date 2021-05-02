@@ -12,10 +12,15 @@
 #
 import os
 import sys
+import re
 import sphinx_rtd_theme
 import sphinx_rtd_dark_mode
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0,os.path.abspath('.'))
+
+with open('pydoodle/__init__.py') as f:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+
 
 
 # -- Project information -----------------------------------------------------
@@ -25,7 +30,7 @@ copyright = '2021, Prince2347X'
 author = 'Prince2347X'
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.2"
+release = version
 
 
 # -- General configuration ---------------------------------------------------
