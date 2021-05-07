@@ -12,13 +12,14 @@
 #
 import os
 import sys
+import re
 import sphinx_rtd_theme
 import sphinx_rtd_dark_mode
+
 sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0,os.path.abspath('.'))
 
-version = "v1.1.0"
 
+version = "v1.1.1"
 
 
 # -- Project information -----------------------------------------------------
@@ -29,7 +30,6 @@ author = 'Prince2347X'
 
 # The full version, including alpha/beta/rc tags
 release = version
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -50,7 +50,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -65,4 +64,3 @@ html_static_path = ['_static']
 
 pygments_style = 'friendly'
 default_dark_mode = True
-

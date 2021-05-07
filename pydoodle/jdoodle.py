@@ -1,5 +1,5 @@
 import requests
-from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported
+from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported, LimitExceeded
 
 
 class Output:
@@ -59,7 +59,8 @@ class Compiler:
         r = requests.get(raw_link)
         return r.text
 
-    def execute(self, script: str, language: str, link: bool = False, stdIn: str = None, versionIndex: int = None) -> Output:
+    def execute(self, script: str, language: str, link: bool = False, stdIn: str = None,
+                versionIndex: int = None) -> Output:
 
         """
         Executes the provided script.
@@ -125,6 +126,8 @@ class Compiler:
             elif response.status_code == 400:
                 raise BadRequest(f"statusCode: {error['statusCode']}, error: {error['error']}\n"
                                  f"Invalid versionIndex or language provided.")
+            elif response.status_code == 429:
+                raise LimitExceeded("Daily limit exceeded. No more API calls for today.")
 
     def usage(self) -> int:
         """
