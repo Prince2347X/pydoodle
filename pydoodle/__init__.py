@@ -4,7 +4,7 @@ from .jdoodle import Compiler
 # METADATA #
 ############
 
-__version__ = "v1.1.1"
+__version__ = "v1.2.0"
 __title__ = "pydoodle"
 __license__ = "MIT"
 __author__ = "Prince2347X"
