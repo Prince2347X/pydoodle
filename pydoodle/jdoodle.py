@@ -83,6 +83,7 @@ class Compiler:
         :raises: :class:`LanguageNotSupported`: Raised if wrong language code is provided.
         :raises: :class:`BadRequest`: Raised when invalid language or versionIndex is provided.
         :raises: :class:`LinkNotSupported`: Raised if the provided link isn't supported yet by pydoodle.
+        :raises: :class:`LimitExceeded`: Raised when the daily limit has exceeded, means no more API calls for today. Learn more: https://jdoodle.com/compiler-api
 
         """
         if not isinstance(script, str):
