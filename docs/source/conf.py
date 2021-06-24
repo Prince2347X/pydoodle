@@ -13,13 +13,14 @@
 import os
 import sys
 import re
+import pydoodle
 import sphinx_rtd_theme
 import sphinx_rtd_dark_mode
 
 sys.path.insert(0, os.path.abspath('..'))
+sys.path.append(os.path.abspath('.'))
 
-
-version = "v1.1.1"
+version = "v1.1.2"
 
 
 # -- Project information -----------------------------------------------------
