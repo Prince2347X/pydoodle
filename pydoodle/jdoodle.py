@@ -8,7 +8,7 @@ class Output:
         """
         The output of the executed script.
         :param response_json: The response from the API
-        :type respose_json: dict
+        :type response_json: dict
         """
         self._output = response_json['output'],
         self._statusCode = response_json['statusCode'],
@@ -78,7 +78,8 @@ class Compiler:
                           'whitespace', 'yabasic']
         self.json = {}
 
-    def _get_raw_link(self, link: str) -> str:
+    @staticmethod
+    def _get_raw_link(link: str) -> str:
         if "pastebin" in link or "hastebin" in link:
             return f"{link[:link.find('.com')]}.com/raw{link[link.rfind('/'):]}"
         elif "textbin" in link:
