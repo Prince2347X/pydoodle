@@ -1,5 +1,3 @@
-from typing import Any, Tuple
-
 import requests
 from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported, LimitExceeded
 
