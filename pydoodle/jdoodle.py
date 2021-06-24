@@ -3,13 +3,13 @@ from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkN
 
 
 class Output:
-
+    """
+    The output of the executed script.
+    :param response_json: The response from the API
+    :type response_json: dict
+    """
     def __init__(self, response_json: dict):
-        """
-        The output of the executed script.
-        :param response_json: The response from the API
-        :type response_json: dict
-        """
+        
         self._output = response_json['output'],
         self._statusCode = response_json['statusCode'],
         self._memory = response_json['memory'],
@@ -49,16 +49,16 @@ class Output:
 
 
 class Compiler:
+    """
+    Initialize the compiler which let you access the Jdoodle API.
 
+    :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
+    :type clientId: str
+    :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
+    :type clientSecret: str
+    """
     def __init__(self, clientId: str, clientSecret: str):
-        """
-        Initialize the compiler which let you access the Jdoodle API.
 
-        :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
-        :type clientId: str
-        :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
-        :type clientSecret: str
-        """
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
