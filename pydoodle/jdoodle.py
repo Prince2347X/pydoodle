@@ -1,30 +1,66 @@
+from typing import Any, Tuple
+
 import requests
 from .errors import UnauthorizedRequest, BadRequest, LanguageNotSupported, LinkNotSupported, LimitExceeded
 
 
 class Output:
-    """
-    The output of the executed script.
-    """
 
-    def __init__(self, output, statusCode, memory, cpuTime):
-        self.output = output
-        self.statusCode = statusCode
-        self.memory = memory
-        self.cpuTime = cpuTime
+    def __init__(self, response_json: dict):
+        """
+        The output of the executed script.
+        :param response_json: The response from the API
+        :type respose_json: dict
+        """
+        self._output = response_json['output'],
+        self._statusCode = response_json['statusCode'],
+        self._memory = response_json['memory'],
+        self._cpuTime = response_json['cpuTime']
+
+    @property
+    def output(self) -> str:
+        """
+        :returns: The output of the executed script.
+        :rtype: str
+        """
+        return self.output
+
+    @property
+    def statusCode(self):
+        """
+        :return: The status code of the API request.
+        :rtype: int
+        """
+        return self._statusCode
+
+    @property
+    def memory(self) -> str:
+        """
+        :return: Memory used to execute the script (in kilobytes).
+        :rtype: str
+        """
+        return str(self._memory)
+
+    @property
+    def cpuTime(self) -> str:
+        """
+        :return: The time taken in the execution of the script (in seconds).
+        :rtype: str
+        """
+        return self._cpuTime
 
 
 class Compiler:
-    """
-    Initialize the compiler which let you access the Jdoodle API.
-
-    :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
-    :type clientId: str
-    :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
-    :type clientSecret: str
-    """
 
     def __init__(self, clientId: str, clientSecret: str):
+        """
+        Initialize the compiler which let you access the Jdoodle API.
+
+        :param clientId: The clientId which you can get from https://jdoodle.com/compiler-api/
+        :type clientId: str
+        :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
+        :type clientSecret: str
+        """
         if not isinstance(clientId, str):
             raise TypeError
         elif not isinstance(clientSecret, str):
@@ -114,10 +150,7 @@ class Compiler:
         response = requests.post(url=self.base_url, headers=self.headers, json=self.json)
         response_json = response.json()
         if response.status_code == 200:
-            return Output(output=response_json['output'],
-                          statusCode=response_json['statusCode'],
-                          memory=response_json['memory'],
-                          cpuTime=response_json['cpuTime'])
+            return Output(response_json)
         else:
             error = response.json()
             if response.status_code == 401:
