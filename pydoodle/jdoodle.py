@@ -21,7 +21,7 @@ class Output:
         :returns: The output of the executed script.
         :rtype: str
         """
-        return self.output
+        return self._output
 
     @property
     def statusCode(self):
