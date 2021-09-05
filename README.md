@@ -1,3 +1,12 @@
+![Logo](https://cdn.discordapp.com/attachments/858994923046699009/859024886784458752/ezgif.com-gif-maker.gif)
+ - [![PyPI - Downloads](https://img.shields.io/pypi/dm/pydoodle)](https://pypi.org/project/pydoodle)
+[![Documentation Status](https://readthedocs.org/projects/pydoodle/badge/?version=master)](https://pydoodle.readthedocs.io)
+![PyPI - License](https://img.shields.io/pypi/l/pydoodle)
+ - ![GitHub top language](https://img.shields.io/github/languages/top/Prince2347X/pydoodle)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Prince2347X/pydoodle)
+ - ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pydoodle)
+![GitHub Repo stars](https://img.shields.io/github/stars/Prince2347X/pydoodle?style=social)
+
 # pydoodle
 An API wrapper of online compiler jdoodle.com written in python.
 
