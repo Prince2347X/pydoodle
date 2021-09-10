@@ -1,8 +1,8 @@
 <p align="center">
-   <img src="https://cdn.discordapp.com/attachments/858994923046699009/859024886784458752/ezgif.com-gif-maker.gif" width=440>
+   <img src="https://user-images.githubusercontent.com/68418241/132795336-ec92639b-096d-429f-9d7f-1a1fa45fb3d8.gif" width=440>
 </p>
 
-<h1 align="center"> pydoodle <p>An API wrapper of online compiler jdoodle.com written in python.</p> </h1>
+<h1 align="center"> pydoodle: <p>An API wrapper of online compiler jdoodle.com written in python.</p> </h1>
 
 
 ## Stats
@@ -12,7 +12,8 @@
  - ![GitHub top language](https://img.shields.io/github/languages/top/Prince2347X/pydoodle)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Prince2347X/pydoodle)
  - ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pydoodle)
-![GitHub Repo stars](https://img.shields.io/github/stars/Prince2347X/pydoodle?style=social)
+ - ![GitHub Repo stars](https://img.shields.io/github/stars/Prince2347X/pydoodle?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Prince2347X/pydoodle?style=social)
 
 
 
