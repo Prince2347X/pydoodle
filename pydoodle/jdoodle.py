@@ -56,8 +56,10 @@ class Compiler:
     :type clientId: str
     :param clientSecret: The clientSecret which you can get from https://jdoodle.com/compiler-api/
     :type clientSecret: str
+    :param proxy: The proxy to be used in the request.Default is None
+    :type proxy: dict
     """
-    def __init__(self, clientId: str, clientSecret: str):
+    def __init__(self, clientId: str, clientSecret: str,proxy: dict=None):
 
         if not isinstance(clientId, str):
             raise TypeError
@@ -77,6 +79,7 @@ class Compiler:
                           'smalltalk', 'spidermonkey', 'sql', 'swift', 'tcl', 'unlambda', 'vbn', 'verilog',
                           'whitespace', 'yabasic']
         self.json = {}
+        self.proxy=proxy
 
     @staticmethod
     def _get_raw_link(link: str) -> str:
@@ -91,7 +94,7 @@ class Compiler:
 
     def _read_link(self, link: str) -> str:
         raw_link = self._get_raw_link(link)
-        r = requests.get(raw_link)
+        r = requests.get(raw_link, proxies=self.proxy)
         return r.text
 
     def execute(self, script: str, language: str, link: bool = False, stdIn: str = None,
@@ -147,7 +150,7 @@ class Compiler:
                 raise TypeError
             else:
                 self.json["stdin"] = stdIn.replace("||", "\n")
-        response = requests.post(url=self.base_url, headers=self.headers, json=self.json)
+        response = requests.post(url=self.base_url, headers=self.headers, json=self.json, proxies=self.proxy)
         response_json = response.json()
         if response.status_code == 200:
             return Output(response_json)
@@ -170,7 +173,7 @@ class Compiler:
         :rtype: int
         """
         json = {"clientId": self.clientID, "clientSecret": self.clientSecret}
-        response = requests.post(url=self.usage_url, json=json)
+        response = requests.post(url=self.usage_url, json=json, proxies=self.proxy)
         if response.status_code == 200:
             return response.json()['used']
         elif response.status_code == 401:
